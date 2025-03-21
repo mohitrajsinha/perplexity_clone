@@ -15,14 +15,14 @@ class _SideNavbarState extends State<SideNavbar> {
   Widget build(BuildContext context) {
     return AnimatedContainer(
       duration: const Duration(milliseconds: 300),
-      width: _isCollapsed ? 64 : 150,
+      width: _isCollapsed ? 64 : 180,
       color: AppColors.sideNav,
       child: Column(
         children: [
           const SizedBox(height: 32),
           Image.asset(
-            'assets/icon.png',
-            scale: 2,
+            _isCollapsed ? 'assets/icon.png' : 'assets/expanded_icon.png',
+            scale: 1,
           ),
           Expanded(
             child: Column(
