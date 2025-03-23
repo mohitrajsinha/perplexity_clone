@@ -11,6 +11,7 @@ class SideNavbar extends StatefulWidget {
 
 class _SideNavbarState extends State<SideNavbar> {
   bool _isCollapsed = true;
+  bool _isHovered = false;
   @override
   Widget build(BuildContext context) {
     return AnimatedContainer(
@@ -22,7 +23,6 @@ class _SideNavbarState extends State<SideNavbar> {
           const SizedBox(height: 32),
           Image.asset(
             _isCollapsed ? 'assets/icon.png' : 'assets/expanded_icon.png',
-            scale: 1,
           ),
           Expanded(
             child: Column(
@@ -81,34 +81,50 @@ class _SideNavbarState extends State<SideNavbar> {
                       _isCollapsed = !_isCollapsed;
                     });
                   },
-                  child: Row(
-                    mainAxisAlignment: _isCollapsed
-                        ? MainAxisAlignment.center
-                        : MainAxisAlignment.start,
-                    children: [
-                      AnimatedContainer(
-                        duration: const Duration(milliseconds: 100),
-                        margin: const EdgeInsets.symmetric(
-                            vertical: 32, horizontal: 12),
-                        child: Icon(
-                          _isCollapsed
-                              ? Icons.arrow_forward_ios
-                              : Icons.arrow_back_ios,
-                          color: Colors.white,
-                          size: _isCollapsed ? 30 : 20,
-                        ),
-                      ),
-                      Visibility(
-                        visible: !_isCollapsed,
-                        child: const Text(
-                          'Collapse',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
+                  child: MouseRegion(
+                    cursor: SystemMouseCursors.click,
+                    onEnter: (event) => setState(() {
+                      _isHovered = true;
+                    }),
+                    onExit: (event) => setState(() {
+                      _isHovered = false;
+                    }),
+                    child: Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(6),
+                          color: _isHovered
+                              ? AppColors.proButton
+                              : Colors.transparent),
+                      child: Row(
+                        mainAxisAlignment: _isCollapsed
+                            ? MainAxisAlignment.center
+                            : MainAxisAlignment.start,
+                        children: [
+                          AnimatedContainer(
+                            duration: const Duration(milliseconds: 100),
+                            margin: const EdgeInsets.symmetric(
+                                vertical: 12, horizontal: 12),
+                            child: Icon(
+                              _isCollapsed
+                                  ? Icons.arrow_forward_ios
+                                  : Icons.arrow_back_ios,
+                              color: Colors.white,
+                              size: _isCollapsed ? 30 : 20,
+                            ),
                           ),
-                        ),
-                      )
-                    ],
+                          Visibility(
+                            visible: !_isCollapsed,
+                            child: const Text(
+                              'Collapse',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
                   ),
                 ),
                 const Divider(
@@ -117,32 +133,35 @@ class _SideNavbarState extends State<SideNavbar> {
                   endIndent: 16,
                   thickness: 1,
                 ),
-                Row(
-                  mainAxisAlignment: _isCollapsed
-                      ? MainAxisAlignment.center
-                      : MainAxisAlignment.start,
-                  children: [
-                    AnimatedContainer(
-                      duration: const Duration(milliseconds: 100),
-                      margin: const EdgeInsets.symmetric(
-                          vertical: 32, horizontal: 12),
-                      child: Icon(
-                        Icons.account_circle_outlined,
-                        color: Colors.white,
-                        size: _isCollapsed ? 30 : 20,
-                      ),
-                    ),
-                    Visibility(
-                      visible: !_isCollapsed,
-                      child: const Text(
-                        'Account',
-                        style: TextStyle(
+                MouseRegion(
+                  cursor: SystemMouseCursors.click,
+                  child: Row(
+                    mainAxisAlignment: _isCollapsed
+                        ? MainAxisAlignment.center
+                        : MainAxisAlignment.start,
+                    children: [
+                      AnimatedContainer(
+                        duration: const Duration(milliseconds: 100),
+                        margin: const EdgeInsets.symmetric(
+                            vertical: 12, horizontal: 12),
+                        child: Icon(
+                          Icons.account_circle_outlined,
                           color: Colors.white,
-                          fontWeight: FontWeight.bold,
+                          size: _isCollapsed ? 30 : 20,
                         ),
                       ),
-                    )
-                  ],
+                      Visibility(
+                        visible: !_isCollapsed,
+                        child: const Text(
+                          'Account',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
                 ),
                 const SizedBox(height: 32),
               ],
