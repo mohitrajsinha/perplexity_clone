@@ -1,5 +1,25 @@
 # perplexity_clone
 
+## Demo
+
+<table>
+  <tr>
+    <td><img src="https://github.com/user-attachments/assets/cf4b6819-ef3e-48cf-b999-08d41d2f94d1" width="200"/></td>
+    <td><img src="https://github.com/user-attachments/assets/cebba6be-4339-4843-aa79-1c36e6d29b45" width="200"/></td>
+    <td><img src="https://github.com/user-attachments/assets/38730493-cb1a-4fe6-a332-27d009684c76" width="200"/></td>
+  </tr>
+</table>
+
+
+
+
+https://github.com/user-attachments/assets/c02f2b25-298e-4abf-8426-3a570e15f7be
+
+
+
+
+
+
 ## Project Overview
 
 This project is a clone of Perplexity AI, built using Python for the backend with FastAPI and Flutter for the frontend. It allows users to ask questions and receive answers based on online sources.
