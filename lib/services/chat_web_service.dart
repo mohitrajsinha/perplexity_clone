@@ -15,11 +15,12 @@ class ChatService {
   final _contentController = StreamController<Map<String, dynamic>>();
 
   Stream<Map<String, dynamic>> get searchResultController =>
-      _searchResultCOntroller.stream;
+      _searchResultCOntroller.stream.asBroadcastStream();
   Stream<Map<String, dynamic>> get contentController =>
-      _contentController.stream;
+      _contentController.stream.asBroadcastStream();
   void connect() {
-    _socket = WebSocket(Uri.parse("ws://localhost:8000/ws"));
+    _socket = WebSocket(
+        Uri.parse("ws://localhost:8000/ws"));
 
     _socket!.messages.listen((message) {
       final data = json.decode(message);

@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:perplexity_clone/theme/colors.dart';
 import 'package:perplexity_clone/widgets/answer_section.dart';
@@ -11,12 +12,15 @@ class ChatPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: kIsWeb ? null : const SideNavbar(),
       body: Row(
         children: [
-          const SideNavbar(),
-          const SizedBox(
-            width: 100,
-          ),
+          kIsWeb ? const SideNavbar() : const SizedBox(),
+          kIsWeb
+              ? const SizedBox(
+                  width: 100,
+                )
+              : const SizedBox(),
           Expanded(
             child: SingleChildScrollView(
               child: Padding(
@@ -42,7 +46,9 @@ class ChatPage extends StatelessWidget {
               ),
             ),
           ),
-          const Placeholder(strokeWidth: 0, color: AppColors.background)
+          kIsWeb
+              ? const Placeholder(strokeWidth: 0, color: AppColors.background)
+              : const SizedBox(),
         ],
       ),
     );

@@ -20,7 +20,6 @@ class SearchServices:
                 "url": result.get("url",""),
                 "content": content
             })
-        
         return results
 
         

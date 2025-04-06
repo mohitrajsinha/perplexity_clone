@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:perplexity_clone/pages/home_page.dart';
 import 'package:perplexity_clone/theme/colors.dart';
 import 'package:perplexity_clone/widgets/sidebar_button.dart';
 
@@ -30,30 +31,41 @@ class _SideNavbarState extends State<SideNavbar> {
                   ? CrossAxisAlignment.center
                   : CrossAxisAlignment.start,
               children: [
-                Row(
-                  mainAxisAlignment: _isCollapsed
-                      ? MainAxisAlignment.center
-                      : MainAxisAlignment.start,
-                  children: [
-                    Container(
-                      margin: const EdgeInsets.symmetric(
-                          vertical: 16, horizontal: 10),
-                      child: Icon(
-                        Icons.add_circle_outline,
-                        color: Colors.white,
-                        size: _isCollapsed ? 30 : 20,
-                      ),
-                    ),
-                    Visibility(
-                      visible: !_isCollapsed,
-                      child: const Text(
-                        'New Thread',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
+                GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const HomePage()),
+                      );
+                    });
+                  },
+                  child: Row(
+                    mainAxisAlignment: _isCollapsed
+                        ? MainAxisAlignment.center
+                        : MainAxisAlignment.start,
+                    children: [
+                      Container(
+                        margin: const EdgeInsets.symmetric(
+                            vertical: 16, horizontal: 10),
+                        child: Icon(
+                          Icons.add_circle_outline,
+                          color: Colors.white,
+                          size: _isCollapsed ? 30 : 20,
                         ),
                       ),
-                    )
-                  ],
+                      Visibility(
+                        visible: !_isCollapsed,
+                        child: const Text(
+                          'New Thread',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
                 ),
                 const SizedBox(
                   height: 32,

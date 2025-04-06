@@ -1,8 +1,9 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:perplexity_clone/services/chat_web_service.dart';
 import 'package:perplexity_clone/theme/colors.dart';
 import 'package:skeletonizer/skeletonizer.dart';
-import 'dart:js' as js;
+import 'package:url_launcher/url_launcher.dart';
 
 class SourcesSection extends StatefulWidget {
   const SourcesSection({super.key});
@@ -20,6 +21,7 @@ class _SourcesSectionState extends State<SourcesSection> {
   ];
   @override
   void initState() {
+    
     ChatService().searchResultController.listen((data) {
       setState(() {
         searchResult = data['data'];
@@ -63,10 +65,13 @@ class _SourcesSectionState extends State<SourcesSection> {
             children: searchResult.map((res) {
               return GestureDetector(
                 onTap: () async {
-                  js.context.callMethod('open', [res['url']]);
+                  await launchUrl(
+                    Uri.parse(res['url']),
+                    mode: LaunchMode.externalApplication,
+                  );
                 },
                 child: Container(
-                    width: 150,
+                    width: 100,
                     padding: const EdgeInsets.all(16),
                     decoration: BoxDecoration(
                       color: AppColors.cardColor,

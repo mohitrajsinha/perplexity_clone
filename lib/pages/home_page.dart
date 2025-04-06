@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:perplexity_clone/services/chat_web_service.dart';
 import 'package:perplexity_clone/theme/colors.dart';
@@ -22,50 +23,54 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Row(
-        children: [
-          const SideNavbar(),
-          Expanded(
-            child: Column(children: [
-              const Expanded(child: SearchSection()),
-              Container(
-                height: 20,
-              ),
-              Container(
-                padding: const EdgeInsets.symmetric(vertical: 16),
-                child: const Wrap(
-                  alignment: WrapAlignment.center,
-                  children: [
-                    FooterText(
-                      txt: 'Pro',
-                    ),
-                    FooterText(
-                      txt: 'Enterprise',
-                    ),
-                    FooterText(
-                      txt: 'Api',
-                    ),
-                    FooterText(
-                      txt: 'Blog',
-                    ),
-                    FooterText(
-                      txt: 'Careers',
-                    ),
-                    FooterText(
-                      txt: 'Store',
-                    ),
-                    FooterText(
-                      txt: 'Finance',
-                    ),
-                    FooterText(
-                      txt: 'English',
-                    ),
-                  ],
+      drawer: kIsWeb ? null : const SideNavbar(),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        child: Row(
+          children: [
+            kIsWeb ? const SideNavbar() : Container(),
+            Expanded(
+              child: Column(children: [
+                const Expanded(child: SearchSection()),
+                Container(
+                  height: 20,
                 ),
-              )
-            ]),
-          )
-        ],
+                Container(
+                  padding: const EdgeInsets.symmetric(vertical: 16),
+                  child: const Wrap(
+                    alignment: WrapAlignment.center,
+                    children: [
+                      FooterText(
+                        txt: 'Pro',
+                      ),
+                      FooterText(
+                        txt: 'Enterprise',
+                      ),
+                      FooterText(
+                        txt: 'Api',
+                      ),
+                      FooterText(
+                        txt: 'Blog',
+                      ),
+                      FooterText(
+                        txt: 'Careers',
+                      ),
+                      FooterText(
+                        txt: 'Store',
+                      ),
+                      FooterText(
+                        txt: 'Finance',
+                      ),
+                      FooterText(
+                        txt: 'English',
+                      ),
+                    ],
+                  ),
+                )
+              ]),
+            )
+          ],
+        ),
       ),
     );
   }

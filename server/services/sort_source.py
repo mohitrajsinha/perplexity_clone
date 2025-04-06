@@ -16,10 +16,12 @@ class SortSourceService:
                 continue
 
             result_embedding = self.model.encode(result["content"])
+
             similarity= float(self.model.similarity(query_embedding, result_embedding))
+        
 
             result['relevance_score'] = similarity
-            if similarity > 0.4:
+            if similarity > 0.4:    
                 relevant_docs.append(result)
 
         return sorted(relevant_docs, key=lambda x: x['relevance_score'], reverse=True)        
