@@ -1,7 +1,7 @@
 # perplexity_clone
 
 ## Demo
-
+### Demo Link: https://perplexity-clone-4761e.web.app
 <table>
   <tr>
     <td><img src="https://github.com/user-attachments/assets/cf4b6819-ef3e-48cf-b999-08d41d2f94d1" width="200"/></td>
